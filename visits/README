@@ -1,0 +1,3 @@
+# A website that counts visits
+
+Uses Docker Compose to bring up the visits-count website and a Redis server.
