@@ -1,0 +1,13 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+jobs:
+  include:
+    - before_install:
+        - cd ./chipmunk
+        - docker build -t zsw1996/chipmunk -f Dockerfile.dev .
+      script:
+        - docker run -e CI=true zsw1996/chipmunk npm run test
+      
