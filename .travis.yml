@@ -21,6 +21,7 @@ jobs:
         bucket_name: "elasticbeanstalk-us-west-2-520940958975"
         bucket_path: "chipmunk"
         zip_file: ./chipmunk.zip
+        skip_cleanup: true
         on:
           branch: main
         access_key_id: $AWS_ACCESS_KEY
