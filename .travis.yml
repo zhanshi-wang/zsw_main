@@ -19,7 +19,7 @@ jobs:
         env: "Chipmunk-env"
         bucket: "elasticbeanstalk-us-west-2-520940958975"
         bucket_path: "chipmunk"
-        zip_file: ./chipmunk.zip
+        zip_file: ../chipmunk.zip
         skip_cleanup: true
         on:
           branch: main
