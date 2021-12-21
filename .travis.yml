@@ -10,4 +10,18 @@ jobs:
         - docker build -t zsw1996/chipmunk -f Dockerfile.dev .
       script:
         - docker run -e CI=true zsw1996/chipmunk npm run test
-      
+      before_deploy:
+        - cd ..
+        - zip ./chipmunk.zip -r ./chipmunk/*
+      deploy:
+        provider: elasticbeanstalk
+        region: "us-west-2"
+        app: "chipmunk"
+        env: "Chipmunk-env"
+        bucket_name: "elasticbeanstalk-us-west-2-520940958975"
+        bucket_path: "chipmunk"
+        zip_file: ./chipmunk.zip
+        on:
+          branch: main
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key: $AWS_SECRET_KEY
