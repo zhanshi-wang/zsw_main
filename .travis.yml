@@ -11,14 +11,13 @@ jobs:
       script:
         - docker run -e CI=true zsw1996/chipmunk npm run test
       before_deploy:
-        - cd ..
-        - zip ./chipmunk.zip -r ./chipmunk/*
+        - zip ../chipmunk.zip -r * .[^.]*
       deploy:
         provider: elasticbeanstalk
         region: "us-west-2"
         app: "chipmunk"
         env: "Chipmunk-env"
-        bucket_name: "elasticbeanstalk-us-west-2-520940958975"
+        bucket: "elasticbeanstalk-us-west-2-520940958975"
         bucket_path: "chipmunk"
         zip_file: ./chipmunk.zip
         skip_cleanup: true
