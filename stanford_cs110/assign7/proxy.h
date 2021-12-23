@@ -23,7 +23,7 @@ class HTTPProxy {
  * specified port.  If the specified port is in use, or the HTTP Proxy
  * server otherwise can't bind to it, then an exception is thrown.
  */
-  HTTPProxy(int argc, char *argv[]) throw (HTTPProxyException);
+  HTTPProxy(int argc, char *argv[]);
 
 /**
  * Returns the port number our proxy is listening to.
@@ -62,7 +62,7 @@ class HTTPProxy {
  * so we further assume exceptions are handled internally and not
  * thrown.
  */
-  void acceptAndProxyRequest() throw(HTTPProxyException);
+  void acceptAndProxyRequest();
   
  private:
   unsigned short portNumber;
@@ -74,7 +74,7 @@ class HTTPProxy {
   HTTPProxyScheduler scheduler;
   
   /* private methods */
-  void configureFromArgumentList(int argc, char *argv[]) throw (HTTPProxyException);
+  void configureFromArgumentList(int argc, char *argv[]);
   void createServerSocket();
   void configureServerSocket() const;
   const char *getClientIPAddress(const struct sockaddr_in *clientAddr) const;

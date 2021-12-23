@@ -19,20 +19,20 @@
 
 class MapReduceServer {
  public:
-  MapReduceServer(int argc, char **argv) throw (MapReduceServerException);
+  MapReduceServer(int argc, char **argv);
   ~MapReduceServer() throw();
   void run() throw();
   
  private:
   unsigned short computeDefaultPortForUser() const throw ();
-  void parseArgumentList(int argc, char *argv[]) throw (MapReduceServerException);
-  void initializeFromConfigFile(const std::string& configFileName) throw (MapReduceServerException);
-  void confirmRequiredArgumentsArePresent(const std::string& configFilename) const throw (MapReduceServerException);
-  void confirmExecutablesAreExecutable() const throw (MapReduceServerException);
-  void applyToServer(const std::string& key, const std::string& value) throw (MapReduceServerException);
+  void parseArgumentList(int argc, char *argv[]);
+  void initializeFromConfigFile(const std::string& configFileName);
+  void confirmRequiredArgumentsArePresent(const std::string& configFilename) const;
+  void confirmExecutablesAreExecutable() const;
+  void applyToServer(const std::string& key, const std::string& value);
   void buildIPAddressMap() throw();
   void stageFiles(const std::string& directory, std::list<std::string>& files) throw();
-  void startServer() throw (MapReduceServerException);
+  void startServer();
   void logServerConfiguration(std::ostream& os) throw();
   void orchestrateWorkers() throw();
   void handleRequest(int clientSocket, const std::string& clientIPAddress) throw();

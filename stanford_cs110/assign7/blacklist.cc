@@ -11,7 +11,7 @@
 #include <iostream>
 using namespace std;
 
-void HTTPBlacklist::addToBlacklist(const std::string& filename) throw (HTTPProxyException) {
+void HTTPBlacklist::addToBlacklist(const std::string& filename) {
   ifstream infile(filename.c_str());
   if (infile.fail()) {
     ostringstream oss;

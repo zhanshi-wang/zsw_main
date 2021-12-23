@@ -34,7 +34,7 @@ class HTTPBlacklist {
  * If there's any drama (e.g. the file doesn't exist), then an
  * HTTPProxyException is thrown.
  */
-  void addToBlacklist(const std::string& filename) throw (HTTPProxyException);
+  void addToBlacklist(const std::string& filename);
 
 /**
  * Method: serverIsAllowed

@@ -7,6 +7,6 @@
 #include "subprocess.h"
 using namespace std;
 
-subprocess_t subprocess(char *argv[], bool supplyChildInput, bool ingestChildOutput) throw (SubprocessException) {
+subprocess_t subprocess(char *argv[], bool supplyChildInput, bool ingestChildOutput) {
   throw SubprocessException("subprocess: not yet implemented.");
 }

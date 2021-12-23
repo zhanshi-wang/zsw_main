@@ -33,7 +33,7 @@ using namespace std;
  * is thrown.
  */
 static const int kUnitializedSocket = -1;
-HTTPProxy::HTTPProxy(int argc, char *argv[]) throw (HTTPProxyException) :
+HTTPProxy::HTTPProxy(int argc, char *argv[]) :
   portNumber(computeDefaultPortForUser()), usingProxy(false),
   usingSpecificProxyPortNumber(false), proxyPortNumber(computeDefaultPortForUser()), 
   listenfd(kUnitializedSocket) {
@@ -57,7 +57,7 @@ HTTPProxy::HTTPProxy(int argc, char *argv[]) throw (HTTPProxyException) :
  * of the requesting host is extracted, and the request is
  * proxied on to the origin server.
  */
-void HTTPProxy::acceptAndProxyRequest() throw (HTTPProxyException) {
+void HTTPProxy::acceptAndProxyRequest() {
   struct sockaddr_in clientAddr;
   socklen_t clientAddrSize = sizeof(clientAddr);
   int connectionfd = accept(listenfd, (struct sockaddr *) &clientAddr, &clientAddrSize);
@@ -80,7 +80,7 @@ void HTTPProxy::acceptAndProxyRequest() throw (HTTPProxyException) {
 
 static const string kUsageString = 
    "Usage: proxy [--port <port-number>] [--proxy-server <proxy-server> [--proxy-port <port-number>]] [--clear-cache] [--max-age <max-cache-time>]";
-void HTTPProxy::configureFromArgumentList(int argc, char *argv[]) throw (HTTPProxyException) {
+void HTTPProxy::configureFromArgumentList(int argc, char *argv[]) {
   struct option options[] = {
     {"port", required_argument, NULL, 'p'},
     {"proxy-port", required_argument, NULL, 'r'},

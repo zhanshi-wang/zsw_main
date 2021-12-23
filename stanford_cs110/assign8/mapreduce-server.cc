@@ -41,7 +41,7 @@ using namespace std;
  * of worker requests to map and reduce data input files.
  */
 static const size_t kNumWorkerThreads = 32;
-MapReduceServer::MapReduceServer(int argc, char *argv[]) throw (MapReduceServerException) 
+MapReduceServer::MapReduceServer(int argc, char *argv[])
   : user(getUser()), host(getHost()), cwd(getCurrentWorkingDirectory()),
     serverPort(computeDefaultPortForUser()), verbose(true), mapOnly(false),
     serverIsRunning(false) {
@@ -72,7 +72,7 @@ void MapReduceServer::run() throw() {
  */
 static const string kUsageString = "./mr --mapper <mapper-name> --reducer <reducer-name> --config <config-file> [--quiet] [--port <port>] [--map-only]";
 static const unsigned short kDefaultServerPort = 12345;
-void MapReduceServer::parseArgumentList(int argc, char *argv[]) throw (MapReduceServerException) {
+void MapReduceServer::parseArgumentList(int argc, char *argv[]) {
   struct option options[] = {
     {"mapper", required_argument, NULL, 'm'},
     {"reducer", required_argument, NULL, 'r'},
@@ -144,7 +144,7 @@ void MapReduceServer::parseArgumentList(int argc, char *argv[]) throw (MapReduce
  * on the command line).
  */
 static const unsigned short kLowestOpenPortNumber = 1024;
-unsigned short MapReduceServer::computeDefaultPortForUser() const throw () {
+unsigned short MapReduceServer::computeDefaultPortForUser() const throw() {
   size_t hashValue = hash<string>()(user + "@" + host); // ensure different than http-proxy default port
   return hashValue % (USHRT_MAX - kLowestOpenPortNumber) + kLowestOpenPortNumber;
 }
@@ -154,7 +154,7 @@ unsigned short MapReduceServer::computeDefaultPortForUser() const throw () {
  * ------------------------------------------
  * Confirms that certain flags and arguments were supplied on the command line.
  */
-void MapReduceServer::confirmRequiredArgumentsArePresent(const string& configFilename) const throw (MapReduceServerException) {
+void MapReduceServer::confirmRequiredArgumentsArePresent(const string& configFilename) const {
   ostringstream oss;
   if (mapper.empty()) {
     oss << "The mapper must be specified." << endl;
@@ -179,7 +179,7 @@ void MapReduceServer::confirmRequiredArgumentsArePresent(const string& configFil
  * Does the best job it can to confirm that the supplied executable names
  * identify executables that can be run by the user driving the map reduce job.
  */
-void MapReduceServer::confirmExecutablesAreExecutable() const throw (MapReduceServerException) {
+void MapReduceServer::confirmExecutablesAreExecutable() const {
   struct executable {
     string executableName;
     string errorMessage; 
@@ -214,7 +214,7 @@ static const string kConfigFileKeys[] = {
   "input-path", "intermediate-path", "output-path"
 };
 static const size_t kNumConfigFileKeys = sizeof(kConfigFileKeys)/sizeof(kConfigFileKeys[0]);
-void MapReduceServer::initializeFromConfigFile(const string& configFileName) throw (MapReduceServerException) {
+void MapReduceServer::initializeFromConfigFile(const string& configFileName) {
   ifstream infile(configFileName);
   if (!infile) {
     ostringstream oss;
@@ -263,7 +263,7 @@ void MapReduceServer::initializeFromConfigFile(const string& configFileName) thr
  */
 static const size_t kMinWorkers = 1;
 static const size_t kMaxWorkers = kNumWorkerThreads;
-void MapReduceServer::applyToServer(const string& key, const string& value) throw (MapReduceServerException) {
+void MapReduceServer::applyToServer(const string& key, const string& value) {
   if (key == "mapper") {
     mapperExecutable = value;
   } else if (key == "reducer") {
@@ -358,7 +358,7 @@ void MapReduceServer::stageFiles(const std::string& directory, list<string>& fil
  * to stage input files, spawn workers to apply mappers to those input files, wait
  * until all input files have been processed, run groupByKey, and so forth.
  */
-void MapReduceServer::startServer() throw (MapReduceServerException) {
+void MapReduceServer::startServer() {
   serverSocket = createServerSocket(serverPort);
   if (serverSocket == kServerSocketFailure) {
     ostringstream oss;
@@ -376,7 +376,7 @@ void MapReduceServer::startServer() throw (MapReduceServerException) {
  * network requests which, in this case, will be requests from the farm of previously
  * spawned workers.
  */
-void MapReduceServer::orchestrateWorkers() throw () {
+void MapReduceServer::orchestrateWorkers() throw() {
   serverIsRunning = true;
   while (true) {
     struct sockaddr_in clientAddress;

@@ -77,7 +77,7 @@
     };
     subprocess_t subprocess(char *argv[], 
                             bool supplyChildInput, 
-                            bool ingestChildOutput) throw (SubprocessException);
+                            bool ingestChildOutput);
     ~~~
 
 # Scrabble API

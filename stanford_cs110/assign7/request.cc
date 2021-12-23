@@ -13,7 +13,7 @@ using namespace std;
 static const string kWhiteSpaceDelimiters = " \r\n\t";
 static const string kProtocolPrefix = "http://";
 static const unsigned short kDefaultPort = 80;
-void HTTPRequest::ingestRequestLine(istream& instream) throw (HTTPBadRequestException) {
+void HTTPRequest::ingestRequestLine(istream& instream) {
   getline(instream, requestLine);
   if (instream.fail()) {
     throw HTTPBadRequestException("First line of request could not be read.");
