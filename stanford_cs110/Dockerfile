@@ -25,14 +25,20 @@ COPY ./ ./
 RUN make -B -C ./extra/src/random
 RUN make -B -C ./extra/src/threads
 
-# RUN make -B -C ./assign1
-# RUN make -B -C ./assign2
-# RUN make -B -C ./assign3
-# RUN make -B -C ./assign4
-# RUN make -B -C ./assign5
+RUN make -B -C ./assign1
+RUN make -B -C ./assign2
+RUN make -B -C ./assign3
+RUN make -B -C ./assign4
+RUN make -B -C ./assign5
 RUN make -B -C ./assign6
 RUN make -B -C ./assign7
 RUN make -B -C ./assign8
+
+RUN make -B -C ./lab1
+RUN make -B -C ./lab2
+RUN make -B -C ./lab3
+RUN make -B -C ./lab4
+RUN make -B -C ./lab5
 
 USER code
 CMD ["/bin/bash"]

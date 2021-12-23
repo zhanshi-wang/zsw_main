@@ -1,6 +1,6 @@
 # CS110 lab2 Solution Makefile Hooks
 PROGS = exargs buggy-exargs
-CXX = /usr/bin/g++-5
+CXX = /usr/bin/g++
 
 CXX_WARNINGS = -Wall -pedantic -Wno-vla
 CXX_DEPS = -MMD -MF $(@:.o=.d)

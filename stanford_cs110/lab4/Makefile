@@ -5,10 +5,10 @@ CXX = /usr/bin/g++
 CXX_WARNINGS = -Wall -pedantic -Wno-vla
 CXX_DEPS = -MMD -MF $(@:.o=.d)
 CXX_DEFINES =
-CXX_INCLUDES = -I/usr/class/cs110/local/include
+CXX_INCLUDES = -I../extra/include
 
 CXXFLAGS = -g $(CXX_WARNINGS) -O0 -std=c++11 $(CXX_DEPS) $(CXX_DEFINES) $(CXX_INCLUDES)
-LDFLAGS = -pthread -L/usr/class/cs110/local/lib -lrand
+LDFLAGS = -pthread -L../extra/lib -lrand
 
 PROGS_SRC = $(patsubst %,%.cc,$(PROGS))
 PROGS_OBJ = $(patsubst %.cc,%.o,$(patsubst %.S,%.o,$(PROGS_SRC)))

@@ -1,7 +1,7 @@
 # CS110 search Solution Makefile Hooks
 
 PROGS = nonsense
-CXX = /usr/bin/g++-5
+CXX = /usr/bin/g++
 
 CXX_WARNINGS = -Wall -pedantic
 CXX_DEPS = -MMD -MF $(@:.o=.d)
