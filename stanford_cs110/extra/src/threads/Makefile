@@ -1,6 +1,6 @@
 # CS110 threads archive/library Makefile 
 
-CXX = /usr/bin/g++-5
+CXX = /usr/bin/g++
 
 # The CFLAGS variable sets compile flags for gcc:
 #  -g          compile with debug information

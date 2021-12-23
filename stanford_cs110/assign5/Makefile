@@ -2,7 +2,7 @@
 
 PROGS = aggregate
 EXTRA_PROGS = test-union-and-intersection
-CXX = /usr/bin/g++-5
+CXX = /usr/bin/g++
 
 NA_LIB_SRC = news-aggregator.cc \
 	     log.cc \
@@ -16,7 +16,7 @@ NA_LIB_SRC = news-aggregator.cc \
 WARNINGS = -Wall -pedantic
 DEPS = -MMD -MF $(@:.o=.d)
 DEFINES = -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD
-INCLUDES = -I/afs/ir/class/cs110/local/include -I/usr/include/libxml2
+INCLUDES = -I../extra/include -I/usr/include/libxml2
 
 CXXFLAGS = -g $(WARNINGS) -O0 -std=c++0x $(DEPS) $(DEFINES) $(INCLUDES)
 LDFLAGS = -lm -lxml2 -L../extra/lib -lrand -lthreads -pthread
